@@ -32,7 +32,6 @@ app.get("/api/products/:productID", (req, res) => {
   return res.json(singleProduct);
 });
 
-// this part doesn't work. I don't know why
 app.get("/api/products/:productId/reviews/:reviewID", (req, res) => {
   console.log(req.params);
   res.send("Hello World!");
