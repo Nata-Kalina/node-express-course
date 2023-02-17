@@ -1,0 +1,12 @@
+Q: Quickly explain how middleware is used in an Express application.
+A: Middleware is everyting that happens in between the time that server gets the request and the time that the server sends the response to the client. It could be function or program. It contains "req" and "res" variables and "next()' function.
+
+Q: What does CRUD stand for?
+A: Create, Read, Update and Delete. It is what we can do with our data in our database.
+
+Q: You are careful to store your sensitive information in a .env file.
+How do you get your app to access the information in the .env file?
+A: First, we add "dotenv": "^8.2.0" dependency in our "package.json" file to be able to use it. Then we create ".env" file and put sensitive information there and store it in a variable. We should add the password in the copied link from Mongo DB. Then in app.js we add "require("dotenv").config()". Then we setup a function "start" using async/await pattern and put our variable with sensitive information to the "connectDB(process.env.MONGO_URI)". Then we configure the port, so it could be invoked only if the connection is established. "connectDB" is a function which include Mongoose connection setup.
+
+Q: How do you protect the contents of the .env file so that it is not stored in your github repository?
+A: ".env" file is included in ".gitignore" file, so its content shoul be invisible for git.
