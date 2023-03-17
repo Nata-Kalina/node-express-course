@@ -1,23 +1,23 @@
 const jwt = require("jsonwebtoken");
-const { UnauthenticatedError } = require("../errors/unauthenticated");
+const { CustomError } = require("../errors/custom-error");
 
 const authenticationMiddleware = async (req, res, next) => {
   const authHeader = req.headers.authorization;
 
   if (!authHeader || !authHeader.startsWith("Bearer ")) {
-    throw new UnauthenticatedError("No token provided");
+    throw new CustomError("unathorized", 401)
   }
 
   const token = authHeader.split(" ")[1];
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    //console.log(decoded);
-    const { id, username } = decoded;
-    req.user = { id, username };
+    console.log(decoded);
+    const { name } = decoded;
+    req.user = { name };
     next();
   } catch (error) {
-    throw new UnauthenticatedError("Not authorized to access this route");
+    throw new CustomError("Not authorized to access this route", 403);
   }
 };
 
