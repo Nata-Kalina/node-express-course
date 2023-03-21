@@ -3,9 +3,7 @@ const router = express.Router();
 
 const { logon, hello } = require("../controllers/controllers");
 
-const authMiddleware = require("../middleware/auth");
-
-router.route("/hello").get(authMiddleware, hello);
+router.route("/hello").get(hello);
 router.route("/logon").post(logon);
 
 module.exports = router;
